@@ -43,7 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
-    'accounts'
+    'phonenumber_field',
+    'accounts',
+    'projects'
 ]
 
 MIDDLEWARE = [
