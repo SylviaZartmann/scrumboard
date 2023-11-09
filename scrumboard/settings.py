@@ -25,7 +25,11 @@ SECRET_KEY = 'django-insecure-i1^34z@osz3tetjxit(z35eqx8d&^7z2_&qd*lp&+)4khl=g+0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['Sunsonella.pythonanywhere.com']
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
+    'Sunsonella.pythonanywhere.com',
+]
 
 
 # Application definition
@@ -37,6 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'accounts'
 ]
 
 MIDDLEWARE = [
@@ -128,3 +135,11 @@ MEDIA_ROOT = '/home/Sunsonella/scrumboard/media'
 MEDIA_URL = '/media/'
 STATIC_ROOT = '/home/Sunsonella/scrumboard/static'
 STATIC_URL = '/static/'
+
+AUTH_USER_MODEL = 'accounts.CustomUser'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+}
