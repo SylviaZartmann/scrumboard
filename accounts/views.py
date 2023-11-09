@@ -26,7 +26,7 @@ class RegisterView(APIView):
 
 class LoginView(APIView):
     
-    def post(request):
+    def post(self, request):
         username = request.data.get('username')
         password = request.data.get('password')
         user = None
@@ -40,7 +40,7 @@ class LoginView(APIView):
             user = authenticate(username=username, password=password)
 
         if user:
-            token, _ = Token.objects.get_or_create(user=user)
+            token, created = Token.objects.get_or_create(user=user)
             return Response({'token': token.key}, status=status.HTTP_200_OK)
 
         return Response({'error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)    
@@ -50,12 +50,9 @@ class LoginView(APIView):
 @permission_classes([IsAuthenticated])
 class LogoutView(APIView):
     
-    def post(request):
+    def post(self, request):
         try:
             request.user.auth_token.delete() # löscht den User Token bei Logout
             return Response({'message': 'Successfully logged out.'}, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-
-
-
