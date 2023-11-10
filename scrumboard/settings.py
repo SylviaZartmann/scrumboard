@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-i1^34z@osz3tetjxit(z35eqx8d&^7z2_&qd*lp&+)4khl=g+0
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    '127.0.0.1',
     'Sunsonella.pythonanywhere.com',
 ]
 
@@ -141,5 +142,6 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
     ],
 }
